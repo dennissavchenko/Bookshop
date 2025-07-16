@@ -1,0 +1,7 @@
+.DS_Store
+*.xcodeproj
+Preview Content
+.idea
+bin
+appsettings.*
+obj
