@@ -1,0 +1,54 @@
+{
+  "used": [
+    {
+      "id": 5,
+      "name": "The New York Times (June 12, 2005)",
+      "description": "Today's edition of The New York Times, covering major global news and current events. This used copy is slightly creased and has minor wear.",
+      "imageUrl": "https://www.jeannoelherlin.com/wp-content/uploads/2022/05/IMG_4699-600x600.jpg",
+      "publishingDate": "2005-06-12T00:00:00",
+      "language": "English",
+      "price": 22.50,
+      "amountInStock": 5,
+      "publisherId": 3,
+      "ageCategoryId": 3,
+      "used": {
+        "condition": 2,
+        "hasAnnotations": false
+      },
+      "newspaper": {
+        "headline": "Global Leaders Convene for Critical Climate Summit",
+        "topics": [
+          "Politics",
+          "Environment",
+          "International Relations"
+        ]
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 1,
+      "name": "The New York Times (February 12, 1990)",
+      "description": "Today's edition of The New York Times, covering major global news and current events. This used copy is slightly creased and has minor wear.",
+      "imageUrl": "https://pbs.twimg.com/media/C4Y0Nh0W8AAGq5-.jpg",
+      "publishingDate": "1990-02-12T00:00:00",
+      "language": "English",
+      "price": 12.50,
+      "amountInStock": 5,
+      "publisherId": 3,
+      "ageCategoryId": 3,
+      "used": {
+        "condition": 2,
+        "hasAnnotations": false
+      },
+      "newspaper": {
+        "headline": "Global Leaders Convene for Critical Climate Summit",
+        "topics": [
+          "Politics",
+          "Environment",
+          "International Relations"
+        ]
+      }
+    }
+  ]
+}

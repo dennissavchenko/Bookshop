@@ -1,0 +1,56 @@
+{
+  "used": [
+    {
+      "id": 3,
+      "name": "David",
+      "surname": "Lee",
+      "email": "david.lee@example.com",
+      "username": "david_l",
+      "password": "123",
+      "salary": 5500,
+      "experience": 2
+    },
+    {
+      "id": 4,
+      "name": "Sarah",
+      "surname": "Kim",
+      "email": "sarah.k@example.com",
+      "username": "sk_work",
+      "password": "SecureEmp@456",
+      "salary": 4200,
+      "experience": 1
+    }
+  ],
+  "unused": [
+    {
+      "id": 3,
+      "name": "Michael",
+      "surname": "Brown",
+      "email": "michael.b@example.com",
+      "username": "mikeb",
+      "password": "EmployeePwd789",
+      "salary": 3800,
+      "experience": 1
+    },
+    {
+      "id": 4,
+      "name": "Jessica",
+      "surname": "White",
+      "email": "jessica.w@example.com",
+      "username": "jessw",
+      "password": "NewHire!Pwd",
+      "salary": 3000,
+      "experience": 0
+    },
+    {
+      "id": 5,
+      "name": "Daniel",
+      "surname": "Green",
+      "email": "daniel.g@example.com",
+      "username": "dangreen",
+      "password": "TempPwd#123",
+      "salary": 6000,
+      "experience": 2
+    }
+  ]
+}

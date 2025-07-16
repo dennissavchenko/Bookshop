@@ -1,0 +1,44 @@
+{
+  "used": [
+    {
+      "id": 1,
+      "name": "Vogue (September Issue)",
+      "description": "The iconic September issue of Vogue, featuring trend reports, fashion editorials, and celebrity interviews. This used copy is in fair condition with some creasing.",
+      "imageUrl": "https://images.squarespace-cdn.com/content/v1/628bd7aff49d2363e69fb763/0689ac01-d4df-4d91-a2c0-4d2d1cee472b/vogue+Polska+cover++September+Issue_2024++copy.jpg",
+      "publishingDate": "2024-09-01T00:00:00",
+      "language": "English",
+      "price": 5.99,
+      "amountInStock": 1,
+      "publisherId": 4,
+      "ageCategoryId": 3,
+      "used": {
+        "condition": 1,
+        "hasAnnotations": false
+      },
+      "magazine": {
+        "isSpecialEdition": true
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 3,
+      "name": "Vogue (Spring Fashion Issue)",
+      "description": "A highly sought-after Spring Fashion issue of Vogue, covering runway trends, designer spotlights, and seasonal styles. This used copy is slightly damaged but complete.",
+      "imageUrl": "https://m.media-amazon.com/images/I/810Hi7z1dBL._AC_UF1000,1000_QL80_.jpg",
+      "publishingDate": "2024-03-15T00:00:00",
+      "language": "English",
+      "price": 7.00,
+      "amountInStock": 1,
+      "publisherId": 4,
+      "ageCategoryId": 3,
+      "used": {
+        "condition": 1,
+        "hasAnnotations": false
+      },
+      "magazine": {
+        "isSpecialEdition": false
+      }
+    }
+  ]
+}

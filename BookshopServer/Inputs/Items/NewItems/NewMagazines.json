@@ -1,0 +1,42 @@
+{
+  "used": [
+    {
+      "id": 1,
+      "name": "Vogue (July 2025 Issue)",
+      "description": "The latest July issue of Vogue, showcasing summer fashion trends, celebrity features, and lifestyle articles. This copy is brand new and in pristine condition.",
+      "imageUrl": "https://media.vogue.co.uk/photos/681dbe10e42a933bdf1e7063/master/w_2560%2Cc_limit/BH-VOGUK-090525-COVER.jpg",
+      "publishingDate": "2025-06-01T00:00:00",
+      "language": "English",
+      "price": 9.99,
+      "amountInStock": 50,
+      "publisherId": 4,
+      "ageCategoryId": 3,
+      "new": {
+        "isSealed": false
+      },
+      "magazine": {
+        "isSpecialEdition": false
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 2,
+      "name": "Vogue (Spring Fashion Special)",
+      "description": "A highly anticipated Spring Fashion special edition of Vogue, featuring exclusive runway highlights, designer interviews, and upcoming style forecasts. This collector's item is brand new and still factory sealed.",
+      "imageUrl": "https://www.dermaworks.co.uk/cdn/shop/articles/Dermaworks_-_retinol_serum_in_Vogue_-_Fresh_Faced_Beauty_-_March_2020._Front_cover.png?v=1671192143",
+      "publishingDate": "2025-03-01T00:00:00",
+      "language": "English",
+      "price": 14.50,
+      "amountInStock": 15,
+      "publisherId": 4,
+      "ageCategoryId": 3,
+      "new": {
+        "isSealed": true
+      },
+      "magazine": {
+        "isSpecialEdition": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "used": [
+    {
+      "id": 1,
+      "name": "Wool",
+      "description": "A gripping dystopian science fiction novel by Hugh Howey, set in a subterranean silo where humanity lives in a rigid society, unaware of the outside world's true nature. This copy shows signs of light wear.",
+      "imageUrl": "https://m.media-amazon.com/images/I/81qFq9nLjzL._AC_UF1000,1000_QL80_.jpg",
+      "publishingDate": "2011-07-30T00:00:00",
+      "language": "English",
+      "price": 9.99,
+      "amountInStock": 1,
+      "publisherId": 1,
+      "ageCategoryId": 5,
+      "used": {
+        "condition": 2,
+        "hasAnnotations": true
+      },
+      "book": {
+        "numberOfPages": 580,
+        "coverType": 0,
+        "authorsIds": [
+          1
+        ],
+        "genresIds": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 2,
+      "name": "The Martian",
+      "description": "An acclaimed science fiction novel by Andy Weir, about an astronaut stranded on Mars and his ingenious fight for survival. This copy is in good condition with minimal wear.",
+      "imageUrl": "https://m.media-amazon.com/images/I/810W+zAp2DL.jpg",
+      "publishingDate": "2011-09-27T00:00:00",
+      "language": "English",
+      "price": 11.50,
+      "amountInStock": 2,
+      "publisherId": 1,
+      "ageCategoryId": 4,
+      "used": {
+        "condition": 3,
+        "hasAnnotations": false
+      },
+      "book": {
+        "numberOfPages": 384,
+        "coverType": 1,
+        "authorsIds": [
+          7
+        ],
+        "genresIds": [
+          1
+        ]
+      }
+    }
+  ]
+}

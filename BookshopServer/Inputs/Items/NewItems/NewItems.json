@@ -1,0 +1,36 @@
+{
+  "used": [
+    {
+      "id": 1,
+      "name": "Pandemic Board Game",
+      "description": "A highly acclaimed cooperative board game where players work together as a team to stop global outbreaks of diseases. This item is brand new, never opened, and still in its original factory seal.",
+      "imageUrl": "https://store-images.s-microsoft.com/image/apps.33445.14083195402906311.a6953a50-861b-4771-9eec-452afc9fdff7.3a4095d1-1e7b-4e52-b9d1-bb69084c705e?w=400&h=600",
+      "publishingDate": "2023-09-15T00:00:00",
+      "language": "English",
+      "price": 45.99,
+      "amountInStock": 10,
+      "publisherId": 1,
+      "ageCategoryId": 3,
+      "new": {
+        "isSealed": true
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 3,
+      "name": "Wingspan Board Game",
+      "description": "A beautiful and strategic engine-building board game where players discover and attract the best birds to their network of wildlife preserves. This copy is factory sealed and brand new.",
+      "imageUrl": "https://i.ebayimg.com/images/g/PcQAAOSw5SJhr2rs/s-l400.png",
+      "publishingDate": "2019-03-08T00:00:00",
+      "language": "English",
+      "price": 55.00,
+      "amountInStock": 8,
+      "publisherId": 1,
+      "ageCategoryId": 2,
+      "new": {
+        "isSealed": true
+      }
+    }
+  ]
+}

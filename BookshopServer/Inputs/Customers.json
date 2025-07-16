@@ -1,0 +1,86 @@
+{
+  "used": [
+    {
+      "id": 1,
+      "name": "Liam",
+      "surname": "Chen",
+      "email": "liam.chen@example.com",
+      "username": "liam_c",
+      "password": "securePass123!",
+      "dob": "1985-04-15T00:00:00",
+      "address": {
+        "street": "Oak Avenue",
+        "houseNumber": 42,
+        "city": "Springfield",
+        "postalCode": "S1P 2Q3",
+        "country": "USA"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Olivia",
+      "surname": "Davies",
+      "email": "olivia.d@example.com",
+      "username": "olivia_d",
+      "password": "mySafePwd!789",
+      "dob": "1992-09-20T00:00:00",
+      "address": {
+        "street": "Elm Street",
+        "houseNumber": 7,
+        "city": "Metropolis",
+        "postalCode": "M4C 5B6",
+        "country": "Canada"
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 3,
+      "name": "Noah",
+      "surname": "Wright",
+      "email": "noah.w@example.com",
+      "username": "noah_wright",
+      "password": "randomPwd#001",
+      "dob": "1978-11-03T00:00:00",
+      "address": {
+        "street": "Pine Lane",
+        "houseNumber": 12,
+        "city": "Gotham",
+        "postalCode": "G7H 8I9",
+        "country": "USA"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Sophia",
+      "surname": "Garcia",
+      "email": "sophia.g@example.com",
+      "username": "sophia_g",
+      "password": "secretUser*ABC",
+      "dob": "2000-01-25T00:00:00",
+      "address": {
+        "street": "Maple Road",
+        "houseNumber": 23,
+        "city": "Star City",
+        "postalCode": "S9J 0K1",
+        "country": "Canada"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Ethan",
+      "surname": "Miller",
+      "email": "ethan.m@example.com",
+      "username": "e_miller",
+      "password": "strongPassword!@#",
+      "dob": "1995-06-10T00:00:00",
+      "address": {
+        "street": "Birch Boulevard",
+        "houseNumber": 55,
+        "city": "Central City",
+        "postalCode": "C2F 3G4",
+        "country": "USA"
+      }
+    }
+  ]
+}

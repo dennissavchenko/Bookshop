@@ -1,0 +1,59 @@
+{
+  "used": [
+    {
+      "id": 4,
+      "name": "Mutant Message Down Under",
+      "description": "A compelling spiritual fiction novel by Marlo Morgan, recounting the journey of an American woman with an Aboriginal tribe in the Australian Outback, sharing profound lessons on nature, spirituality, and humanity.",
+      "imageUrl": "https://m.media-amazon.com/images/I/617FyhUdJ7L._AC_UF1000,1000_QL80_.jpg",
+      "publishingDate": "1991-01-01T00:00:00",
+      "language": "English",
+      "price": 14.50,
+      "amountInStock": 15,
+      "publisherId": 2,
+      "ageCategoryId": 4,
+      "new": {
+        "isSealed": false
+      },
+      "book": {
+        "numberOfPages": 192,
+        "coverType": 1,
+        "authorsIds": [
+          3
+        ],
+        "genresIds": [
+          4,
+          5
+        ]
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 5,
+      "name": "Left Neglected",
+      "description": "A poignant and insightful novel by Lisa Genova, exploring the journey of a high-powered executive whose life is transformed after a traumatic brain injury leaves her with a condition called 'left neglect.' This copy is brand new and unread.",
+      "imageUrl": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9780857202680/left-neglected-9780857202680_hr.jpg",
+      "publishingDate": "2011-09-06T00:00:00",
+      "language": "English",
+      "price": 16.00,
+      "amountInStock": 12,
+      "publisherId": 2,
+      "ageCategoryId": 4,
+      "new": {
+        "isSealed": false
+      },
+      "book": {
+        "numberOfPages": 304,
+        "coverType": 1,
+        "authorsIds": [
+          2
+        ],
+        "genresIds": [
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  ]
+}

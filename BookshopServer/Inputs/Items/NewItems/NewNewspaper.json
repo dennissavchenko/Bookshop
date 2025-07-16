@@ -1,0 +1,52 @@
+{
+  "used": [
+    {
+      "id": 2,
+      "name": "The New York Times (June 12, 2025 Edition)",
+      "description": "Today's comprehensive edition of The New York Times, offering in-depth analysis of global events, national politics, and culture. This copy is freshly printed and unread.",
+      "imageUrl": "https://cover.viapresse.com/3422/0/800",
+      "publishingDate": "2025-06-12T00:00:00",
+      "language": "English",
+      "price": 4.00,
+      "amountInStock": 200,
+      "publisherId": 3,
+      "ageCategoryId": 3,
+      "new": {
+        "isSealed": false
+      },
+      "newspaper": {
+        "headline": "Global Leaders Discuss Climate Change Amid Extreme Weather Events",
+        "topics": [
+          "International News",
+          "Climate Change",
+          "Politics"
+        ]
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 3,
+      "name": "The New York Times (June 11, 2025 Edition)",
+      "description": "Yesterday's comprehensive edition of The New York Times, featuring a special report on technological advancements and their societal impact. This copy is freshly printed and in perfect condition.",
+      "imageUrl": "https://static01.nyt.com/images/2025/01/05/nytfrontpage/scan.jpg",
+      "publishingDate": "2025-06-11T00:00:00",
+      "language": "English",
+      "price": 4.00,
+      "amountInStock": 180,
+      "publisherId": 3,
+      "ageCategoryId": 3,
+      "new": {
+        "isSealed": false
+      },
+      "newspaper": {
+        "headline": "AI Progress Sparks Debate on Future of Work",
+        "topics": [
+          "Technology",
+          "Labor",
+          "Ethics"
+        ]
+      }
+    }
+  ]
+}

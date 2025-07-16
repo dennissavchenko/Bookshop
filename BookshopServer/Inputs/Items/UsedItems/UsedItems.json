@@ -1,0 +1,38 @@
+{
+  "used": [
+    {
+      "id": 2,
+      "name": "Catan Board Game",
+      "description": "A popular strategy board game where players collect resources and build settlements, cities, and roads. This used version is in good condition, but has some annotations on the rulebook.",
+      "imageUrl": "https://www.wellplayed.ch/cdn/shop/files/catan-das-spiel-de-kosmos-board-games-232.webp?v=1746356647",
+      "publishingDate": "2018-03-01T00:00:00",
+      "language": "English",
+      "price": 35.50,
+      "amountInStock": 1,
+      "publisherId": 1,
+      "ageCategoryId": 3,
+      "used": {
+        "condition": 2,
+        "hasAnnotations": true
+      }
+    }
+  ],
+  "unused": [
+    {
+      "id": 2,
+      "name": "Ticket to Ride Board Game",
+      "description": "A classic cross-country train adventure board game. This new item comes sealed in its original packaging.",
+      "imageUrl": "https://mepel.pl/userdata/public/gfx/82893/pic7541330.png",
+      "publishingDate": "2022-10-20T00:00:00",
+      "language": "English",
+      "price": 49.99,
+      "amountInStock": 1,
+      "publisherId": 1,
+      "ageCategoryId": 2,
+      "used": {
+        "condition": 0,
+        "hasAnnotations": false
+      }
+    }
+  ]
+}
