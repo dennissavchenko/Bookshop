@@ -11,6 +11,7 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
     
     let title: String
     let example: String
+    let searchEntity: SearchEntity
     @State private var text = ""
     @State private var selectedEntities: [BriefEntity] = []
     @FocusState private var isFocused
@@ -21,16 +22,30 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
         Text(title)
             .fontWeight(.medium)
             .font(.footnote)
+            .onChange(of: itemIdArray) {
+                if !itemIdArray.isEmpty {
+                    Task {
+                        selectedEntities = await model.fetchSelectedEntities(searchEntity: searchEntity, ids: itemIdArray)
+                    }
+                }
+            }
+            .onAppear {
+                if !itemIdArray.isEmpty {
+                    Task {
+                        selectedEntities = await model.fetchSelectedEntities(searchEntity: searchEntity, ids: itemIdArray)
+                    }
+                }
+            }
         TextField(example, text: $text)
             .focused($isFocused)
             .onChange(of: text) {
                 if isFocused && text.trimmingCharacters(in: .whitespaces) != "" {
                     Task {
-                        await model.fetchBriefEntities(searchTerm: text)
+                        await model.fetchBriefEntities(searchEntity: searchEntity, searchTerm: text)
                     }
                 }
             }
-        if isFocused && text != "" {
+        if isFocused && !model.briefEntities.isEmpty && text.trimmingCharacters(in: .whitespaces) != "" {
             VStack(alignment: .leading) {
                 ForEach(model.briefEntities, id: \.self) { entity in
                     Text("􀒒  \(entity.name)")
@@ -50,10 +65,12 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
                 }
             }
         }
-        MultiChoiceGridView(briefEntities: $selectedEntities, idArray: $itemIdArray)
+        if !selectedEntities.isEmpty {
+            MultiChoiceGridView(briefEntities: $selectedEntities, idArray: $itemIdArray)
+        }
     }
 }
 
 #Preview {
-    MultiSearchView<AuthorViewModel>(title: "Authors", example: "ex. Lisa Genova", model: AuthorViewModel(), itemIdArray: .constant([]))
+    MultiSearchView<SearchViewModel>(title: "Authors", example: "ex. Lisa Genova", searchEntity: .author, model: SearchViewModel(), itemIdArray: .constant([]))
 }

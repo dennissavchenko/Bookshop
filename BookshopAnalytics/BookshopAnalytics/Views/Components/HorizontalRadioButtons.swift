@@ -15,7 +15,7 @@ struct HorizontalRadioButtons: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Select Item Type")
+            Text("Item Type")
                 .fontWeight(.medium)
                 .font(.footnote)
 

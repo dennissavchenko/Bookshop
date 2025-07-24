@@ -32,22 +32,20 @@ struct AddNewItem: View {
                 DatePicker("", selection: $item.publishingDate, displayedComponents: .date)
                     .datePickerStyle(.automatic)
                     .labelsHidden()
-                OneSearchView<PublisherViewModel>(title: "Publisher", example: "ex. Penguin Random House", model: PublisherViewModel(), itemStringValue: .constant(nil), itemIntValue: $item.publisherId)
-                OneSearchView<LanguageViewModel>(title: "Language", example: "ex. English", model: LanguageViewModel(), itemStringValue: $item.language, itemIntValue: .constant(nil)) 
+                OneSearchView<SearchViewModel>(title: "Publisher", example: "ex. Penguin Random House", searchEntity: .publisher, model: SearchViewModel(), itemStringValue: .constant(nil), itemIntValue: $item.publisherId)
+                OneSearchView<LanguageViewModel>(title: "Language", example: "ex. English", searchEntity: .language, model: LanguageViewModel(), itemStringValue: $item.language, itemIntValue: .constant(nil))
                 getTextField("Price", "ex. 11.99", $item.price)
                 getTextField("Amount In Stock", "ex. 12", $item.amountInStock)
                 HorizontalRadioButtons(selectedOption: $item.itemType)
-                MultiSearchView<AuthorViewModel>(title: "Authors", example: "ex. Lisa Genova", model: AuthorViewModel(), itemIdArray: $item.authorsIds)
-                MultiSearchView<GenreViewModel>(title: "Genres", example: "ex. Medical Drama", model: GenreViewModel(), itemIdArray: $item.genresIds)
-                // genres
                 if item.itemType == .book {
+                    MultiSearchView<SearchViewModel>(title: "Authors", example: "ex. Lisa Genova", searchEntity: .author, model: SearchViewModel(), itemIdArray: $item.authorsIds)
+                    MultiSearchView<SearchViewModel>(title: "Genres", example: "ex. Medical Drama", searchEntity: .genre, model: SearchViewModel(), itemIdArray: $item.genresIds)
                     getTextField("Number Of Pages", "ex. 431", $item.numberOfPages)
                 }
                 // cover Type
                 
                 Button("Add") {
-                    print(item.authorsIds)
-                    print(item.genresIds)
+                    print(item)
                 }
             }
             .padding()

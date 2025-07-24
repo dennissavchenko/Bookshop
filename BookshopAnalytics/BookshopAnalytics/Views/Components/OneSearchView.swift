@@ -11,10 +11,11 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
     
     let title: String
     let example: String
+    let searchEntity: SearchEntity
     @State private var text = ""
-    @State private var selectedEntity: BriefEntity? = nil
     @FocusState private var isFocused
     @State var model: Model
+    @State var selectedEntity: BriefEntity? = nil
     @Binding var itemStringValue: String?
     @Binding var itemIntValue: Int?
     
@@ -22,16 +23,38 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
         Text(title)
             .fontWeight(.medium)
             .font(.footnote)
+            .onChange(of: itemIntValue) {
+                if itemIntValue != nil {
+                    Task {
+                        selectedEntity = await model.fetchSelectedEntities(searchEntity: searchEntity, ids: [itemIntValue ?? 0]).first
+                    }
+                }
+            }
+            .onChange(of: itemStringValue) {
+                if itemStringValue != nil {
+                    selectedEntity = BriefEntity(id: 0, name: itemStringValue ?? "")
+                }
+            }
+            .onAppear {
+                if itemIntValue != nil {
+                    Task {
+                        selectedEntity = await model.fetchSelectedEntities(searchEntity: searchEntity, ids: [itemIntValue ?? 0]).first
+                    }
+                }
+                if itemStringValue != nil {
+                    selectedEntity = BriefEntity(id: 0, name: itemStringValue ?? "")
+                }
+            }
         TextField(example, text: $text)
             .focused($isFocused)
             .onChange(of: text) {
                 if isFocused && text.trimmingCharacters(in: .whitespaces) != "" {
                     Task {
-                        await model.fetchBriefEntities(searchTerm: text)
+                        await model.fetchBriefEntities(searchEntity: searchEntity, searchTerm: text)
                     }
                 }
             }
-        if isFocused && text != "" {
+        if text.trimmingCharacters(in: .whitespaces) != "" && isFocused && !model.briefEntities.isEmpty {
             VStack(alignment: .leading) {
                 ForEach(model.briefEntities, id: \.self) { entity in
                     Text("􀒒  \(entity.name)")
@@ -42,7 +65,6 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
                             itemStringValue = entity.name
                             isFocused.toggle()
                             text = ""
-                            selectedEntity = entity
                         }
                     Divider()
                 }
@@ -63,5 +85,5 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
 }
 
 #Preview {
-    OneSearchView<PublisherViewModel>(title: "Publisher", example: "ex. Penguin Random House", model: PublisherViewModel(), itemStringValue: .constant(nil), itemIntValue: .constant(nil))
+    OneSearchView<SearchViewModel>(title: "Publisher", example: "ex. Penguin Random House", searchEntity: .publisher, model: SearchViewModel(), itemStringValue: .constant(nil), itemIntValue: .constant(nil))
 }

@@ -22,7 +22,7 @@ class LanguageViewModel: @preconcurrency SearchViewModelProtocol {
     var statusCode: Int?
     
     /// Loads the data for all publishers from the API.
-    func fetchBriefEntities(searchTerm: String) async {
+    func fetchBriefEntities(searchEntity: SearchEntity, searchTerm: String) async {
         guard let url = Bundle.main.url(forResource: "Languages", withExtension: "json"),
               let data = try? Data(contentsOf: url) else {
             briefEntities = []
@@ -46,6 +46,10 @@ class LanguageViewModel: @preconcurrency SearchViewModelProtocol {
             entity.name.lowercased().contains(searchTerm.lowercased())
         }
         return Array(NSOrderedSet(array: starts + contains)) as! [BriefEntity]
+    }
+    
+    func fetchSelectedEntities(searchEntity: SearchEntity, ids: [Int]) async -> [BriefEntity] {
+        return []
     }
     
 }
