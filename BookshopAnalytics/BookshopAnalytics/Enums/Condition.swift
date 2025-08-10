@@ -14,4 +14,14 @@ enum Condition: String, Decodable, CaseIterable {
     case good = "Good"
     case fair = "Fair"
     case poor = "Poor"
+    
+    var intValue: Int {
+        switch self {
+        case .mint: return 0
+        case .good: return 1
+        case .fair: return 2
+        case .poor: return 3
+        }
+    }
+    
 }

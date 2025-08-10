@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct HorizontalRadioButtons<T>: View where T: CaseIterable & Hashable & RawRepresentable, T.RawValue == String {
+struct VerticalRadioButtons<T>: View where T: CaseIterable & Hashable & RawRepresentable, T.RawValue == String  {
     
     let title: String
     @Binding var selectedOption: T?
+    @Binding var error: ErrorType
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,7 +19,7 @@ struct HorizontalRadioButtons<T>: View where T: CaseIterable & Hashable & RawRep
                 .fontWeight(.medium)
                 .font(.footnote)
 
-            HStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 8) {
                 ForEach(Array(T.allCases), id: \.self) { option in
                     HStack {
                         ZStack {
@@ -30,7 +31,7 @@ struct HorizontalRadioButtons<T>: View where T: CaseIterable & Hashable & RawRep
                                 .fill(.white)
                                 .frame(width: 6, height: 6)
                         }
-                        Text(option.rawValue == "" ? "Other" : option.rawValue)
+                        Text(option.rawValue == "SpiralBound" ? "Spiral Bound" : option.rawValue)
                     }
                     .background(.clear)
                     .onTapGesture {
@@ -40,10 +41,16 @@ struct HorizontalRadioButtons<T>: View where T: CaseIterable & Hashable & RawRep
                     }
                 }
             }
+            if error != .correct {
+                Text("􀁟 \(error.rawValue) \(title.lowercased())!")
+                    .foregroundStyle(.red)
+                    .font(.footnote)
+                    .padding(.top, 2)
+            }
         }
     }
 }
 
 #Preview {
-    HorizontalRadioButtons<ItemType>(title: "Item Type", selectedOption: .constant(ItemType.book))
+    VerticalRadioButtons<CoverType>(title: "Cover Type", selectedOption: .constant(CoverType.hard), error: .constant(AddItemError().coverType))
 }

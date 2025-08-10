@@ -79,7 +79,7 @@ public class UsedItemsController : ControllerBase
     /// a 400 Bad Request response if the input is invalid;
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
-    [HttpPost("books")]
+    [HttpPost("book")]
     public async Task<IActionResult> AddUsedBookAsync([FromBody] UsedBookDto usedBookDto)
     {
         try
@@ -105,7 +105,7 @@ public class UsedItemsController : ControllerBase
     /// a 400 Bad Request response if the input is invalid;
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
-    [HttpPost("magazines")]
+    [HttpPost("magazine")]
     public async Task<IActionResult> AddUsedMagazineAsync([FromBody] UsedMagazineDto usedMagazineDto)
     {
         try
@@ -131,7 +131,7 @@ public class UsedItemsController : ControllerBase
     /// a 400 Bad Request response if the input is invalid;
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
-    [HttpPost("newspapers")]
+    [HttpPost("newspaper")]
     public async Task<IActionResult> AddUsedNewspaperAsync([FromBody] UsedNewspaperDto usedNewspaperDto)
     {
         try
@@ -183,7 +183,7 @@ public class UsedItemsController : ControllerBase
     /// a 400 Bad Request response if the input is invalid;
     /// or a 404 Not Found response if the book does not exist.
     /// </returns>
-    [HttpPut("books")]
+    [HttpPut("book")]
     public async Task<IActionResult> UpdateUsedBookAsync([FromBody] UpdateUsedBookDto usedBookDto)
     {
         try
@@ -209,7 +209,7 @@ public class UsedItemsController : ControllerBase
     /// a 400 Bad Request response if the input is invalid;
     /// or a 404 Not Found response if the magazine does not exist.
     /// </returns>
-    [HttpPut("magazines")]
+    [HttpPut("magazine")]
     public async Task<IActionResult> UpdateUsedMagazineAsync([FromBody] UsedMagazineDto usedMagazineDto)
     {
         try
@@ -235,7 +235,7 @@ public class UsedItemsController : ControllerBase
     /// a 400 Bad Request response if the input is invalid;
     /// or a 404 Not Found response if the newspaper does not exist.
     /// </returns>
-    [HttpPut("newspapers")]
+    [HttpPut("newspaper")]
     public async Task<IActionResult> UpdateUsedNewspaperAsync([FromBody] UsedNewspaperDto usedNewspaperDto)
     {
         try

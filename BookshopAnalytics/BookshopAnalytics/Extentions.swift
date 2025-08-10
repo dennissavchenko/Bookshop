@@ -14,6 +14,14 @@ extension String {
     var countW: Int {
         self.trimmingCharacters(in: .whitespaces).count
     }
+    func validatePriceString() -> Bool {
+        let regex = try! Regex(#"^(0|[1-9]\d*)(\.\d{0,2})?$"#)
+        return self.contains(regex)
+    }
+    func validateAmountString() -> Bool {
+        let regex = try! Regex(#"^(0|[1-9]\d*)$"#)
+        return self.contains(regex)
+    }
 }
 
 extension Double {
@@ -30,6 +38,11 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM d, yyyy"
         return formatter
+    }
+    func customFormatDateFormatter(format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
     }
 }
 

@@ -17,6 +17,7 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
     @FocusState private var isFocused
     @State var model: Model
     @Binding var itemIdArray: [Int]
+    @Binding var error: ErrorType
     
     var body: some View {
         Text(title)
@@ -68,9 +69,14 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
         if !selectedEntities.isEmpty {
             MultiChoiceGridView(briefEntities: $selectedEntities, idArray: $itemIdArray)
         }
+        if error != .correct {
+            Text("􀁟 \(error.rawValue) \(title.lowercased().dropLast())!")
+                .foregroundStyle(.red)
+                .font(.footnote)
+        }
     }
 }
 
 #Preview {
-    MultiSearchView<SearchViewModel>(title: "Authors", example: "ex. Lisa Genova", searchEntity: .author, model: SearchViewModel(), itemIdArray: .constant([]))
+    MultiSearchView<SearchViewModel>(title: "Authors", example: "ex. Lisa Genova", searchEntity: .author, model: SearchViewModel(), itemIdArray: .constant([]), error: .constant(AddItemError().authorsIds))
 }

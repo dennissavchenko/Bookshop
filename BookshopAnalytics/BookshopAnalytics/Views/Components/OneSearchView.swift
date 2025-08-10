@@ -18,6 +18,7 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
     @State var selectedEntity: BriefEntity? = nil
     @Binding var itemStringValue: String?
     @Binding var itemIntValue: Int?
+    @Binding var error: ErrorType
     
     var body: some View {
         Text(title)
@@ -81,9 +82,14 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
                         .fill(Color.accentColor)
                 }
         }
+        if error != .correct {
+            Text("􀁟 \(error.rawValue) \(title.lowercased())!")
+                .foregroundStyle(.red)
+                .font(.footnote)
+        }
     }
 }
 
 #Preview {
-    OneSearchView<SearchViewModel>(title: "Publisher", example: "ex. Penguin Random House", searchEntity: .publisher, model: SearchViewModel(), itemStringValue: .constant(nil), itemIntValue: .constant(nil))
+    OneSearchView<SearchViewModel>(title: "Publisher", example: "ex. Penguin Random House", searchEntity: .publisher, model: SearchViewModel(), itemStringValue: .constant(nil), itemIntValue: .constant(nil), error: .constant(AddItemError().publisherId))
 }

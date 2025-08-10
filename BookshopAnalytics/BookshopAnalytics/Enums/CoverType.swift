@@ -13,4 +13,13 @@ enum CoverType: String, Decodable, CaseIterable {
     case soft = "Soft"
     case hard = "Hard"
     case spiralBound = "SpiralBound"
+    
+    var intValue: Int {
+        switch self {
+        case .hard: return 0
+        case .soft: return 1
+        case .spiralBound: return 2
+        }
+    }
+    
 }

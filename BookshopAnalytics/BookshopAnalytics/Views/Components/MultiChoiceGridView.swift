@@ -36,6 +36,33 @@ struct MultiChoiceGridView: View {
     }
 }
 
+struct MultiStringGridView: View {
+    
+    @Binding var stringArray: [String]
+    
+    var body: some View {
+        AnyLayout(FlowLayout(spacing: 8)) {
+            ForEach(stringArray, id: \.self) { text in
+                HStack {
+                    Image(systemName: "xmark")
+                        .onTapGesture {
+                            stringArray.removeAll(where: { $0 == text})
+                        }
+                    Text(text)
+                }
+                .padding(2)
+                .italic()
+                .padding(.horizontal, 2)
+                .foregroundStyle(.white)
+                .background {
+                    RoundedRectangle(cornerRadius: 0)
+                        .fill(Color.accentColor)
+                }
+            }
+        }
+    }
+}
+
 struct FlowLayout: Layout {
     
     var spacing: CGFloat

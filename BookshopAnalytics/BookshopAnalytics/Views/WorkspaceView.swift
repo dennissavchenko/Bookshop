@@ -18,6 +18,8 @@ struct WorkspaceView: View {
     @State var isAlertPresented: Bool = false
     @State var itemToBeDeletedId: Int? = nil
     
+    @State var addNewItem = false
+    
     var body: some View {
         NavigationSplitView {
             WorkspaceSidebarView(sidebarSelection: $selectedTab)
@@ -110,6 +112,16 @@ struct WorkspaceView: View {
                     .padding(40)
                 }
             }
+        }
+        .toolbar {
+            ToolbarItem() {
+                Button("", systemImage: "plus") {
+                    addNewItem.toggle()
+                }
+            }
+        }
+        .sheet(isPresented: $addNewItem) {
+            AddNewItem()
         }
     }
 }
