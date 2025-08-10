@@ -13,7 +13,7 @@ struct SpecialEditionBadge: View {
             Text("Special Edition")
             Image(systemName: "star.circle.fill")
         }
-        .fontWeight(.bold)
+        .fontWeight(.medium)
         .foregroundStyle(.white)
         .padding(8)
         .background {

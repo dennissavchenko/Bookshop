@@ -2,6 +2,7 @@ using BookShopServer.Entities;
 using BookShopServer.Exceptions;
 using BookShopServer.Services;
 using BookShopServer.Services.OrderServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShopServer.Controllers;
@@ -140,6 +141,7 @@ public class OrdersController : ControllerBase
     /// or 404 Not Found if the order does not exist.
     /// </returns>
     [HttpPost("{id:int}/status")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> ChangeOrderStatusAsync(int id, [FromQuery] OrderStatus orderStatus)
     {
         try

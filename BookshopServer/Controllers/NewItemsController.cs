@@ -3,6 +3,7 @@ using BookShopServer.DTOs.ItemDTOs.AddOrUpdateItem;
 using BookShopServer.Exceptions;
 using BookShopServer.Services;
 using BookShopServer.Services.ItemServices.ItemCondition;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShopServer.Controllers;
@@ -56,6 +57,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPost]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddNewItemAsync([FromBody] NewItemDto newItemDto)
     {
         try
@@ -83,6 +85,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPut]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateNewItemAsync([FromBody] NewItemDto newItemDto)
     {
         try
@@ -110,6 +113,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPost("book")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddNewBookAsync([FromBody] NewBookDto newBookDto)
     {
         try
@@ -137,6 +141,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPost("magazine")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddNewMagazineAsync([FromBody] NewMagazineDto newMagazineDto)
     {
         try
@@ -164,6 +169,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPost("newspaper")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddNewNewspaperAsync([FromBody] NewNewspaperDto newNewspaperDto)
     {
         try
@@ -191,6 +197,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPut("book")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateNewBookAsync([FromBody] UpdateNewBookDto newBookDto)
     {
         try
@@ -218,6 +225,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPut("magazine")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateNewMagazineAsync([FromBody] NewMagazineDto newMagazineDto)
     {
         try
@@ -245,6 +253,7 @@ public class NewItemsController : ControllerBase
     /// 400 Bad Request if validation fails.
     /// </returns>
     [HttpPut("newspaper")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateNewNewspaperAsync([FromBody] NewNewspaperDto newNewspaperDto)
     {
         try

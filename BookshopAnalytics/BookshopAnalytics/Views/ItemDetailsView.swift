@@ -16,7 +16,7 @@ struct ItemDetailsView: View {
     @State var isLoaded = false
     
     var body: some View {
-        ScrollView() {
+        ScrollView {
             getItemImage(item: item)
                 .padding(.top, 20)
             Text(item.name)
@@ -95,5 +95,5 @@ struct ItemDetailsView: View {
 }
 
 #Preview {
-    ItemDetailsView(item: Item(id: 1, name: "Mutant Message Down Under", description: "A compelling spiritual fiction novel by Marlo Morgan, recounting the journey of an American woman with an Aboriginal tribe in the Australian Outback, sharing profound lessons on nature, spirituality, and humanity.", imageUrl: "https://m.media-amazon.com/images/I/617FyhUdJ7L._AC_UF1000,1000_QL80_.jpg", publishingDate: Date(), language: "English", price: 11.99, amountInStock: 4, publisherName: "Penguin Random House", ageCategory: 16, averageRating: 4.7, reviews: [], type: .book, isSpecialEdition: true, isUsed: false))
+    ItemDetailsView(item: Item(id: 1, name: "Mutant Message Down Under", description: "A compelling spiritual fiction novel by Marlo Morgan, recounting the journey of an American woman with an Aboriginal tribe in the Australian Outback, sharing profound lessons on nature, spirituality, and humanity.", imageUrl: "https://m.media-amazon.com/images/I/617FyhUdJ7L._AC_UF1000,1000_QL80_.jpg", publishingDate: Date(), language: "English", price: 11.99, amountInStock: 4, publisherId: 0, publisherName: "Penguin Random House", ageCategoryId: 0, ageCategory: 16, averageRating: 4.7, reviews: [], type: .book, isSpecialEdition: true, isUsed: false))
 }

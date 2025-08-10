@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomerOrdersView: View {
     
     @State private var model = CustomerOrdersViewModel()
-    let customerId = 1
+    let customerId = 4
     
     var body: some View {
         NavigationStack {

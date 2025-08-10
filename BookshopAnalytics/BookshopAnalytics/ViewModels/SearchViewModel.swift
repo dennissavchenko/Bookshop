@@ -1,10 +1,3 @@
-//
-//  PublisherViewModel.swift
-//  BookShopAnalytics
-//
-//  Created by dennis savchenko on 13/07/2025.
-//
-
 import Foundation
 
 enum SearchEntity: String, CaseIterable {
@@ -14,22 +7,14 @@ enum SearchEntity: String, CaseIterable {
     case language = "languages"
 }
 
-/// A view model responsible for managing publishers
-///
-/// This class is an `@Observable` object, making it suitable for use in SwiftUI views
-/// to automatically update the UI when item data or loading states change.
-/// It operates on the `@MainActor` to ensure UI updates happen on the main thread.
 @MainActor
 @Observable
 class SearchViewModel: @preconcurrency SearchViewModelProtocol {
     
-    /// List of publishers loaded from the API
     var briefEntities: [BriefEntity] = []
     
-    /// Status code of the response
     var statusCode: Int?
     
-    /// Loads the data for all publishers from the API.
     func fetchBriefEntities(searchEntity: SearchEntity, searchTerm: String) async {
 
         guard let url = URL(string: "http://localhost:5084/api/\(searchEntity.rawValue)/search?searchTerm=\(searchTerm)") else {
@@ -37,7 +22,6 @@ class SearchViewModel: @preconcurrency SearchViewModelProtocol {
             return
         }
         
-        // Configure the URL request for a GET operation.
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -72,7 +56,6 @@ class SearchViewModel: @preconcurrency SearchViewModelProtocol {
             return nil
         }
         
-        // Configure the URL request for a GET operation.
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -19,8 +19,7 @@ struct LogInView: View {
     
     @State var showEmployeeInfo: Bool = false
     
-    @Environment(\.openWindow) private var openWindow
-    @Environment(\.dismiss) private var dismiss
+    @Binding var loggedIn: Bool
     
     func isEmpty(_ text: String) -> Bool {
         text.trimmingCharacters(in: .whitespaces).isEmpty
@@ -62,10 +61,7 @@ struct LogInView: View {
                             else if model.statusCode == 401 {
                                 passwordError = true
                             } else if model.statusCode == 200 {
-                                if let id = model.userTokens?.id {
-                                    openWindow(id: "employee-info", value: id)
-                                    dismiss()
-                                }
+                                loggedIn = true
                             }
                         }
                     }
@@ -102,5 +98,5 @@ struct LogInView: View {
 }
 
 #Preview {
-    LogInView()
+    LogInView(loggedIn: .constant(false))
 }

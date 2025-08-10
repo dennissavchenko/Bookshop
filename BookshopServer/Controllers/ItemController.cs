@@ -1,6 +1,7 @@
 using BookShopServer.Exceptions;
 using BookShopServer.Services;
 using BookShopServer.Services.ItemServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShopServer.Controllers;
@@ -172,6 +173,7 @@ public class ItemController : ControllerBase
     /// A 204 No Content response if the deletion is successful;
     /// or a 404 Not Found response if the item does not exist.
     /// </returns>
+    [Authorize(Roles = "Admin, Employee")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteItemAsync(int id)
     {

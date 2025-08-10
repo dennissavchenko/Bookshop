@@ -3,6 +3,7 @@ using BookShopServer.DTOs.ItemDTOs.AddOrUpdateItem;
 using BookShopServer.Exceptions;
 using BookShopServer.Services;
 using BookShopServer.Services.ItemServices.ItemCondition;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShopServer.Controllers;
@@ -54,6 +55,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
     [HttpPost]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddUsedItemAsync([FromBody] UsedItemDto usedItemDto)
     {
         try
@@ -80,6 +82,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
     [HttpPost("book")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddUsedBookAsync([FromBody] UsedBookDto usedBookDto)
     {
         try
@@ -106,6 +109,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
     [HttpPost("magazine")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddUsedMagazineAsync([FromBody] UsedMagazineDto usedMagazineDto)
     {
         try
@@ -132,6 +136,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if a related entity does not exist.
     /// </returns>
     [HttpPost("newspaper")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> AddUsedNewspaperAsync([FromBody] UsedNewspaperDto usedNewspaperDto)
     {
         try
@@ -158,6 +163,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if the item does not exist.
     /// </returns>
     [HttpPut]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateUsedItemAsync([FromBody] UsedItemDto usedItemDto)
     {
         try
@@ -184,6 +190,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if the book does not exist.
     /// </returns>
     [HttpPut("book")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateUsedBookAsync([FromBody] UpdateUsedBookDto usedBookDto)
     {
         try
@@ -210,6 +217,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if the magazine does not exist.
     /// </returns>
     [HttpPut("magazine")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateUsedMagazineAsync([FromBody] UsedMagazineDto usedMagazineDto)
     {
         try
@@ -236,6 +244,7 @@ public class UsedItemsController : ControllerBase
     /// or a 404 Not Found response if the newspaper does not exist.
     /// </returns>
     [HttpPut("newspaper")]
+    [Authorize(Roles = "Admin, Employee")]
     public async Task<IActionResult> UpdateUsedNewspaperAsync([FromBody] UsedNewspaperDto usedNewspaperDto)
     {
         try

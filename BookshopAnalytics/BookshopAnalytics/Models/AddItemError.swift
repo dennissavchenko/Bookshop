@@ -1,10 +1,3 @@
-//
-//  SimpleOrder.swift
-//  BookShopAnalytics
-//
-//  Created by dennis savchenko on 09/06/2025.
-//
-
 import Foundation
 import SwiftUI
 

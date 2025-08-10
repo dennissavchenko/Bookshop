@@ -19,6 +19,8 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
     @Binding var itemIdArray: [Int]
     @Binding var error: ErrorType
     
+    @State var hoveredId = 0
+    
     var body: some View {
         Text(title)
             .fontWeight(.medium)
@@ -47,11 +49,14 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
                 }
             }
         if isFocused && !model.briefEntities.isEmpty && text.trimmingCharacters(in: .whitespaces) != "" {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 2) {
                 ForEach(model.briefEntities, id: \.self) { entity in
                     Text("􀒒  \(entity.name)")
+                        .padding(.horizontal, 4)
+                        .frame(height: 24)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
+                        .background(hoveredId == entity.id ? Color.gray.opacity(0.2) : Color.clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         .onTapGesture {
                             if !itemIdArray.contains(entity.id) {
                                 itemIdArray.append(entity.id)
@@ -61,6 +66,9 @@ struct MultiSearchView<Model: SearchViewModelProtocol>: View {
                                 isFocused.toggle()
                                 text = ""
                             }
+                        }
+                        .onHover { hovering in
+                            hoveredId = hovering ? entity.id : (hoveredId == entity.id ? 0 : hoveredId)
                         }
                     Divider()
                 }

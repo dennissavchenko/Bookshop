@@ -20,6 +20,8 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
     @Binding var itemIntValue: Int?
     @Binding var error: ErrorType
     
+    @State var hoveredId = 0
+    
     var body: some View {
         Text(title)
             .fontWeight(.medium)
@@ -56,16 +58,22 @@ struct OneSearchView<Model: SearchViewModelProtocol>: View {
                 }
             }
         if text.trimmingCharacters(in: .whitespaces) != "" && isFocused && !model.briefEntities.isEmpty {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 2) {
                 ForEach(model.briefEntities, id: \.self) { entity in
                     Text("􀒒  \(entity.name)")
+                        .padding(.horizontal, 4)
+                        .frame(height: 24)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
+                        .background(hoveredId == entity.id ? Color.gray.opacity(0.2) : Color.clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         .onTapGesture {
                             itemIntValue = entity.id
                             itemStringValue = entity.name
                             isFocused.toggle()
                             text = ""
+                        }
+                        .onHover { hovering in
+                            hoveredId = hovering ? entity.id : (hoveredId == entity.id ? 0 : hoveredId)
                         }
                     Divider()
                 }

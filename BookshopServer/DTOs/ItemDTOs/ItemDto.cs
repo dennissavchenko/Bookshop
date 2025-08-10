@@ -24,6 +24,8 @@ public class ItemDto : SimpleItemDto
     public double AverageRating { get; set; }
     public IEnumerable<ReviewForItemDto> Reviews { get; set; }
     public string? Type { get; set; } // "Book", "Magazine", "Newspaper" or null
+    public ICollection<int>? AuthorsIds { get; set; }
+    public ICollection<int>? GenresIds { get; set; }
     public ICollection<string>? Authors { get; set; }
     public ICollection<string>? Genres { get; set; }
     public int? NumberOfPages { get; set; }
@@ -71,6 +73,8 @@ public class ItemDto : SimpleItemDto
             Type = item.GetItemType().ToString(),
             NumberOfPages = item.Book?.NumberOfPages,
             CoverType = item.Book?.CoverType.ToString(),
+            AuthorsIds = item.Book?.Authors.Select(x => x.Id).ToList(),
+            GenresIds = item.Book?.Genres.Select(x => x.Id).ToList(),
             Authors = item.Book?.Authors.Select(x => x.Pseudonym ?? $"{x.Name} {x.Surname}").ToList(),
             Genres = item.Book?.Genres.Select(x => x.Name).ToList(),
             IsSpecialEdition = item.Magazine?.IsSpecialEdition,

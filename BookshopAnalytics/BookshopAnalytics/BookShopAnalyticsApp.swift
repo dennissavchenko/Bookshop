@@ -13,8 +13,5 @@ struct BookShopAnalyticsApp: App {
         WindowGroup {
             ContentView()
         }
-        WindowGroup("Workspace", id: "employee-info", for: Int.self) { $employeeId in
-            WorkspaceView()
-        }
     }
 }

@@ -25,7 +25,7 @@ public class TokenService : ITokenService
     private readonly IUserRepository _userRepository;
     private readonly IConfiguration _configuration;
 
-    public TokenService(IConfiguration configuration,  IRefreshTokenRepository refreshTokenRepository, IUserRepository userRepository, int accessTokenMinutes = 60, int refreshTokenDays = 30)
+    public TokenService(IConfiguration configuration,  IRefreshTokenRepository refreshTokenRepository, IUserRepository userRepository, int accessTokenMinutes = 1, int refreshTokenDays = 30)
     {
         _configuration = configuration;
         _accessTokenExpirationMinutes = accessTokenMinutes;

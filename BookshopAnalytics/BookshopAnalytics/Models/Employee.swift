@@ -1,10 +1,3 @@
-//
-//  Employee.swift
-//  BookShopAnalytics
-//
-//  Created by dennis savchenko on 25/06/2025.
-//
-
 enum Experience: String, CaseIterable {
     case junior = "Junior"
     case middle = "Middle"

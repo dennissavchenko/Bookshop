@@ -11,6 +11,9 @@ struct AddNewItem: View {
     
     @State var itemsViewModel = ItemsViewModel()
     
+    @State var showBadge = false
+    @State var isSuccessful = false
+    
     @State var item = AddItem(id: 0, name: "", description: "", imageUrl: "", publishingDate: Date(), language: nil, price: "", amountInStock: "", publisherId: nil, ageCategoryId: nil, itemType: ItemType.book, authorsIds: [], genresIds: [], numberOfPages: "", coverType: nil, isSpecialEdition: false, headline: "", topics: [], itemCondition: ItemCondition.new, isSealed: false, condition: nil, hasAnnotations: false)
     
     @State var itemError = AddItemError()
@@ -54,6 +57,7 @@ struct AddNewItem: View {
                 }
                 OneSearchView<SearchViewModel>(title: "Publisher", example: "ex. Penguin Random House", searchEntity: .publisher, model: SearchViewModel(), itemStringValue: .constant(nil), itemIntValue: $item.publisherId, error: $itemError.publisherId)
                 OneSearchView<LanguageViewModel>(title: "Language", example: "ex. English", searchEntity: .language, model: LanguageViewModel(), itemStringValue: $item.language, itemIntValue: .constant(nil), error: $itemError.language)
+                DropDownListView(title: "Age Category", selectedId: $item.ageCategoryId, error: $itemError.ageCategoryId)
                 getTextField("Price", "ex. 11.99", $item.price)
                     .onChange(of: item.price) { oldValue, newValue in
                         if !newValue.validatePriceString() && !newValue.isEmpty {
@@ -89,7 +93,7 @@ struct AddNewItem: View {
                     getToggle("Question", "Does this item have annotations?", $item.hasAnnotations)
                 }
                 HStack {
-                    Button("Add") {
+                    Button(item.id == 0 ? "Add" : "Update") {
                         var result = false
                         addButtonPressed = true
                         if !item.price.validatePriceString() {
@@ -105,7 +109,47 @@ struct AddNewItem: View {
                         if result {
                             print(item)
                             Task {
-                                await itemsViewModel.addItem(item: item)
+                                if item.id == 0 {
+                                    if await itemsViewModel.addItem(item: item) == 201 {
+                                        isSuccessful = true
+                                        withAnimation {
+                                            showBadge = true
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            dismiss()
+                                        }
+                                    } else {
+                                        isSuccessful = false
+                                        withAnimation {
+                                            showBadge = true
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            withAnimation {
+                                                showBadge = false
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if await itemsViewModel.updateItem(item: item) == 204 {
+                                        isSuccessful = true
+                                        withAnimation {
+                                            showBadge = true
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            dismiss()
+                                        }
+                                    } else {
+                                        isSuccessful = false
+                                        withAnimation {
+                                            showBadge = true
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            withAnimation {
+                                                showBadge = false
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }.buttonStyle(.borderedProminent)
@@ -115,7 +159,13 @@ struct AddNewItem: View {
                 }.padding(.top)
             }
             .padding()
-        }.onChange(of: item) { new, old in
+        }
+        .overlay {
+            if showBadge {
+                CompletionBadge(isSuccessful: isSuccessful)
+            }
+        }
+        .onChange(of: item) { new, old in
             if addButtonPressed && new.itemType == old.itemType && new.itemCondition == old.itemCondition {
                 (_, itemError) = validateNewItem(item)
             }
@@ -171,6 +221,10 @@ struct AddNewItem: View {
         }
         if item.publisherId == nil {
             itemError.publisherId = .zeroChoiceOne
+            result = false
+        }
+        if item.ageCategoryId == nil {
+            itemError.ageCategoryId = .zeroChoiceOne
             result = false
         }
         if item.language == nil {

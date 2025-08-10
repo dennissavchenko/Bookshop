@@ -1,17 +1,6 @@
-//
-//  SimpleOrder.swift
-//  BookShopAnalytics
-//
-//  Created by dennis savchenko on 09/06/2025.
-//
-
 import Foundation
 import SwiftUI
 
-/// Represents a generic item available in the bookshop, including books, magazines, and newspapers.
-///
-/// This struct is designed to be `Identifiable` for use in SwiftUI lists, and `Decodable`
-/// to allow for easy parsing from JSON data received from an API.
 struct Item: Identifiable, Decodable {
     var id: Int
     var name: String
@@ -21,11 +10,15 @@ struct Item: Identifiable, Decodable {
     var language: String
     var price: Double
     var amountInStock: Int
+    var publisherId: Int
     var publisherName: String
+    var ageCategoryId: Int
     var ageCategory: Int
     var averageRating: Double
     var reviews: [Review]
     var type: ItemType
+    var authorsIds: [Int]?
+    var genresIds: [Int]?
     var authors: [String]?
     var genres: [String]?
     var numberOfPages: Int?
