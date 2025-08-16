@@ -21,7 +21,6 @@ class ItemsViewModel {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(KeychainHelper.load(forKey: "access_token") ?? "")", forHTTPHeaderField: "Authorization")
 
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
@@ -45,11 +44,11 @@ class ItemsViewModel {
         }
     }
     
-    func deleteItem(_ id: Int) async {
+    func deleteItem(_ id: Int, wasRefreshed: Bool = false) async -> Int {
 
         guard let url = URL(string: "http://localhost:5084/api/items/\(id)") else {
             print("Invalid URL for log in.")
-            return
+            return 0
         }
         
         var request = URLRequest(url: url)
@@ -62,10 +61,24 @@ class ItemsViewModel {
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Response was lost or has invalid format!")
-                return
+                return 0
             }
             
-            statusCode = httpResponse.statusCode
+            if httpResponse.statusCode == 401 && !wasRefreshed {
+                let refreshed = await LogInViewModel().refresh(
+                    refreshCredentials: UserTokens(
+                        id: 0,
+                        accessToken: KeychainHelper.load(forKey: "access_token") ?? "",
+                        refreshToken: KeychainHelper.load(forKey: "refresh_token") ?? ""
+                    )
+                )
+                if refreshed {
+                    return await deleteItem(id, wasRefreshed: true)
+                } else {
+                    print("Token refresh failed")
+                    return 401
+                }
+            }
             
             if httpResponse.statusCode != 204 {
                 print("\(httpResponse.statusCode) error occured")
@@ -74,8 +87,11 @@ class ItemsViewModel {
                 items.removeAll(where: { $0.id == id })
             }
             
+            return httpResponse.statusCode
+            
         } catch {
             print("Failed to load employee: \(error.localizedDescription)")
+            return 0
         }
     }
     
@@ -123,7 +139,7 @@ class ItemsViewModel {
         }
     }
     
-    func addItem(item: AddItem) async -> Int {
+    func addItem(item: AddItem, wasRefreshed: Bool = false) async -> Int {
         
         guard let url = URL(string: "http://localhost:5084/api/items/\(item.itemCondition?.rawValue.lowercased() ?? "new")\(item.itemType == .typeless ? "" : "/\(item.itemType?.rawValue.lowercased() ?? "book")")") else {
             print("Invalid URL for log in.")
@@ -150,7 +166,21 @@ class ItemsViewModel {
                 return 0
             }
             
-            statusCode = httpResponse.statusCode
+            if httpResponse.statusCode == 401 && !wasRefreshed {
+                let refreshed = await LogInViewModel().refresh(
+                    refreshCredentials: UserTokens(
+                        id: 0,
+                        accessToken: KeychainHelper.load(forKey: "access_token") ?? "",
+                        refreshToken: KeychainHelper.load(forKey: "refresh_token") ?? ""
+                    )
+                )
+                if refreshed {
+                    return await addItem(item: item, wasRefreshed: true)
+                } else {
+                    print("Token refresh failed")
+                    return 401
+                }
+            }
             
             if httpResponse.statusCode != 201 {
                 print("\(httpResponse.statusCode) error occured")
@@ -166,48 +196,61 @@ class ItemsViewModel {
         }
     }
     
-    func updateItem(item: AddItem) async -> Int {
-        
-        guard let url = URL(string: "http://localhost:5084/api/items/\(item.itemCondition?.rawValue.lowercased() ?? "new")\(item.itemType == .typeless ? "" : "/\(item.itemType?.rawValue.lowercased() ?? "book")")") else {
-            print("Invalid URL for log in.")
+    func updateItem(item: AddItem, wasRefreshed: Bool = false) async -> Int {
+        guard let url = URL(string:
+            "http://localhost:5084/api/items/\(item.itemCondition?.rawValue.lowercased() ?? "new")" +
+            "\(item.itemType == .typeless ? "" : "/\(item.itemType?.rawValue.lowercased() ?? "book")")"
+        ) else {
+            print("Invalid URL for update.")
             return 0
         }
-        
-        print(url.absoluteString)
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(KeychainHelper.load(forKey: "access_token") ?? "")", forHTTPHeaderField: "Authorization")
-        
+        request.setValue("Bearer \(KeychainHelper.load(forKey: "access_token") ?? "")",
+                         forHTTPHeaderField: "Authorization")
+
         do {
-            
-            let jsonData = try JSONSerialization.data(withJSONObject: getItemJSON(item), options: .prettyPrinted)
-            
+            let jsonData = try JSONSerialization.data(withJSONObject: getItemJSON(item), options: [])
             request.httpBody = jsonData
 
             let (_, response) = try await URLSession.shared.data(for: request)
-            
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Response was lost or has invalid format!")
                 return 0
             }
-            
-            statusCode = httpResponse.statusCode
-            
-            if httpResponse.statusCode != 204 {
-                print("\(httpResponse.statusCode) error occured")
-            } else {
-                print("Updated Successfully")
+
+            if httpResponse.statusCode == 401 && !wasRefreshed {
+                let refreshed = await LogInViewModel().refresh(
+                    refreshCredentials: UserTokens(
+                        id: 0,
+                        accessToken: KeychainHelper.load(forKey: "access_token") ?? "",
+                        refreshToken: KeychainHelper.load(forKey: "refresh_token") ?? ""
+                    )
+                )
+                if refreshed {
+                    return await updateItem(item: item, wasRefreshed: true)
+                } else {
+                    print("Token refresh failed")
+                    return 401
+                }
             }
-            
+
+            if httpResponse.statusCode != 204 {
+                print("\(httpResponse.statusCode) error occurred \(wasRefreshed)")
+            } else {
+                print("Updated Successfully \(wasRefreshed)")
+            }
+
             return httpResponse.statusCode
-            
+
         } catch {
-            print("Error!")
+            print("Error! \(error.localizedDescription)")
             return 0
         }
     }
+
     
     private func getUsedJSON(_ item: AddItem) -> [String: Any] {
         [

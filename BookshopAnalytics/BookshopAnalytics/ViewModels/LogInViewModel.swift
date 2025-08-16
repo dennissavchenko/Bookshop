@@ -49,11 +49,11 @@ class LogInViewModel {
         }
     }
     
-    func refresh(refreshCredentials: UserTokens) async {
+    func refresh(refreshCredentials: UserTokens) async -> Bool {
 
         guard let url = URL(string: "http://localhost:5084/api/auth/refresh") else {
             print("Invalid URL for log in.")
-            return
+            return false
         }
         
         var request = URLRequest(url: url)
@@ -69,7 +69,7 @@ class LogInViewModel {
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Response was lost or has invalid format!")
-                return
+                return false
             }
             
             statusCode = httpResponse.statusCode
@@ -85,9 +85,12 @@ class LogInViewModel {
                 }
             }
             
+            return httpResponse.statusCode == 200 ? true : false
+            
         } catch {
             print("Error \(error.localizedDescription)")
         }
+        return false
     }
     
 }

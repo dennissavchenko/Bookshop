@@ -31,7 +31,7 @@ struct ContentView: View {
                     refreshToken = KeychainHelper.load(forKey: "refresh_token")
                     if let accessToken = accessToken, let refreshToken = refreshToken {
                         Task {
-                            await logInViewModel.refresh(refreshCredentials: UserTokens(id: 0, accessToken: accessToken, refreshToken: refreshToken))
+                            _ = await logInViewModel.refresh(refreshCredentials: UserTokens(id: 0, accessToken: accessToken, refreshToken: refreshToken))
                             if logInViewModel.statusCode == 200 {
                                 loggedIn = true
                             } else {

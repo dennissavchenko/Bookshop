@@ -8,7 +8,7 @@ class EmployeeViewModel {
     
     var statusCode: Int?
     
-    func fetchEmployee(employeeId: Int) async {
+    func fetchEmployee(employeeId: Int, wasRefreshed: Bool = false) async -> Int {
 
         guard let url = URL(string: "http://localhost:5084/api/users/employees/\(employeeId)") else {
             print("Invalid URL for log in.")
@@ -28,7 +28,21 @@ class EmployeeViewModel {
                 return
             }
             
-            statusCode = httpResponse.statusCode
+            if httpResponse.statusCode == 401 && !wasRefreshed {
+                let refreshed = await LogInViewModel().refresh(
+                    refreshCredentials: UserTokens(
+                        id: 0,
+                        accessToken: KeychainHelper.load(forKey: "access_token") ?? "",
+                        refreshToken: KeychainHelper.load(forKey: "refresh_token") ?? ""
+                    )
+                )
+                if refreshed {
+                    return await fetchEmployee(employeeId: employeeId, wasRefreshed: true)
+                } else {
+                    print("Token refresh failed")
+                    return 401
+                }
+            }
             
             if httpResponse.statusCode != 200 {
                 print("\(httpResponse.statusCode) error occured")

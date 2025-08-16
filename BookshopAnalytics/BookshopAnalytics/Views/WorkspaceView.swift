@@ -144,7 +144,7 @@ struct WorkspaceView: View {
                                                 }
                                             }
                                         }
-                                        await itemsViewModel.deleteItem(itemId)
+                                        _ = await itemsViewModel.deleteItem(itemId)
                                         await itemsViewModel.fetchItems()
                                     }
                                 }
