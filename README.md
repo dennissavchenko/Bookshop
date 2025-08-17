@@ -1,4 +1,4 @@
-# 📚 Bookshop — Full-stack Online Bookstore
+# 📚 Full-stack Online Bookstore
 Bookshop is a full-stack system demonstrating **complex software design** across three components:
 - **Server (ASP.NET Core)** — handles database communication, validation, and business logic.
 - **iOS App (SwiftUI)** — customer-facing app implementing use cases such as browsing and leaving reviews.
